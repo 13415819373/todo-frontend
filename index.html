@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloudflare 全栈 Demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 40px auto; padding: 0 16px; }
+    input { padding: 8px; width: calc(100% - 110px); }
+    button { padding: 8px 12px; }
+    li { padding: 8px 0; border-bottom: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <h1>待办清单</h1>
+  <div>
+    <input id="input" placeholder="输入一条待办" />
+    <button onclick="addTodo()">添加</button>
+  </div>
+  <ul id="list"></ul>
+  <script src="./app.js"></script>
+</body>
+</html>
