@@ -62,3 +62,20 @@ async function downloadImg() {
   a.click();
   URL.revokeObjectURL(a.href);
 }
+
+// 发送验证码邮件：调用 Worker 的 /api/send-email
+async function sendEmail() {
+  const to = document.getElementById("emailInput").value.trim();
+  if (!to) { alert("请输入收件邮箱"); return; }
+  const res = await fetch(`${API}/api/send-email`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ to }),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    document.getElementById("mailResult").innerText = "发送失败：" + (data.error || "未知错误");
+    return;
+  }
+  document.getElementById("mailResult").innerText = `发送成功！验证码：${data.code}（同时已发到你邮箱）`;
+}

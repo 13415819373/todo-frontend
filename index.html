@@ -28,6 +28,14 @@
   </div>
   <div id="imgBox" style="margin-top:12px"></div>
   <button id="dlBtn" onclick="downloadImg()" style="display:none;margin-top:8px">下载图片</button>
+
+  <hr />
+  <h2>发验证码邮件（Resend）</h2>
+  <div>
+    <input id="emailInput" placeholder="收件邮箱" style="width:220px" />
+    <button onclick="sendEmail()">发送验证码</button>
+  </div>
+  <div id="mailResult" style="margin-top:12px"></div>
   <script src="./app.js"></script>
 </body>
 </html>
