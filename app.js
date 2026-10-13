@@ -44,7 +44,21 @@ async function upload() {
     alert(data.error || "上传失败");
     return;
   }
-  // 展示上传成功的图片
+  // 展示上传成功的图片 + 显示下载按钮
   document.getElementById("imgBox").innerHTML =
     `<img src="${API}${data.url}" style="max-width:300px;border:1px solid #ccc;" />`;
+  window.__imgUrl = `${API}${data.url}`;
+  document.getElementById("dlBtn").style.display = "inline-block";
+}
+
+// 下载图片：fetch 拿 blob 再下载（跨域也能正常存成文件，不产生流量费）
+async function downloadImg() {
+  if (!window.__imgUrl) return;
+  const res = await fetch(window.__imgUrl);
+  const blob = await res.blob();
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "uploaded-image.jpg";
+  a.click();
+  URL.revokeObjectURL(a.href);
 }
